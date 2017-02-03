@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', 'ListController@show');
+Route::get('/', [
+    'as'   => 'home',
+    'uses' => 'HomeController@index'
+]);
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
-Route::get('/got', [
-    'uses' => function () {
-        echo "You are allowed to view this pager!";
-    }
-])->middleware('auth');
+Route::resource('tasks', 'TasksController');
